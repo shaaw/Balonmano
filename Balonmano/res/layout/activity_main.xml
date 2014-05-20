@@ -5,45 +5,34 @@
     android:layout_height="match_parent"
     tools:context="com.example.balonmano.MainActivity"
     tools:ignore="MergeRootFrame" >
-
-    <RelativeLayout
+	 <LinearLayout
+        android:id="@+id/canvasLayout"
         android:layout_width="match_parent"
-        android:layout_height="51dp"
-        android:gravity="bottom" >
+        android:layout_height="404dp"
+        android:orientation="vertical" >
 
-        <Button
-            android:id="@+id/Mover"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:text="Mover" />
+    </LinearLayout>
+    <RelativeLayout android:id="@+id/footer"
+        android:layout_width="fill_parent" android:orientation="horizontal"
+        android:layout_alignParentBottom="true" style="@android:style/ButtonBar"
+        android:layout_height="wrap_content" android:layout_gravity="bottom">
 
-        <Button
-            android:id="@+id/Flecha1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@+id/Mover"
-            android:text="Button" />
+            <Button android:id="@+id/saveButton" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_weight="1"
+                android:text="Mover" />
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@+id/Flecha1"
-            android:text="Button" />
+            <Button
+                android:id="@+id/cancelButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/saveButton"
+                android:layout_weight="1"
+                android:text="Flecha" />
 
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@+id/button3"
-            android:text="Button" />
+        </RelativeLayout >
 
-    </RelativeLayout>
+   
 
 </FrameLayout>
 
