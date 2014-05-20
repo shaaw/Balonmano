@@ -70,7 +70,6 @@ public class DrawView extends View {
 		int i;
 
     	sbitmap.recycle();
-    	int i;
     	
     	for(i = 0; i < jugadores.size(); i++)
     	{
