@@ -10,15 +10,19 @@
         android:layout_width="match_parent"
         android:layout_height="404dp"
         android:orientation="vertical" >
-
+ 
     </LinearLayout>
-    <RelativeLayout android:id="@+id/footer"
-        android:layout_width="fill_parent" android:orientation="horizontal"
-        android:layout_alignParentBottom="true" style="@android:style/ButtonBar"
-        android:layout_height="wrap_content" android:layout_gravity="bottom">
+
+    <RelativeLayout
+        android:id="@+id/footer"
+        style="@android:style/ButtonBar"
+        android:layout_width="fill_parent"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal" >
 
             <Button android:id="@+id/saveButton" android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:layout_weight="1"
+            android:layout_height="wrap_content" 
                 android:text="Mover" />
 
             <Button
@@ -27,8 +31,38 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/saveButton"
-                android:layout_weight="1"
                 android:text="Flecha" />
+
+            <Button
+                android:id="@+id/L_Cont"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:minHeight="30dp"
+                android:text="L.Cont" />
+
+            <Button
+                android:id="@+id/L_Disc"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toLeftOf="@+id/L_Cont"
+                android:minHeight="30dp"
+                android:text="L.Disc" />
+
+            <Button
+                android:id="@+id/B_Del"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toLeftOf="@+id/L_Disc"
+                android:layout_toRightOf="@+id/cancelButton"
+                android:text="DEL"
+                android:textSize="9sp" />
 
         </RelativeLayout >
 

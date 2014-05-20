@@ -1,30 +1,23 @@
 package com.example.balonmano;
 
 import java.util.ArrayList;
-import java.math.*;
-
 import Modelo.Jugador;
 import Modelo.Linea;
-import android.app.ActionBar.LayoutParams;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.Paint.Align;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.LinearLayout;
 
 public class DrawView extends View {
     Paint paint = new Paint();
     ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
-
 	ArrayList<Linea> lineas = new ArrayList<Linea>();
-
+	Path path = new Path();
     float pelotax;
     float pelotay;
     Jugador a = null;
@@ -33,7 +26,7 @@ public class DrawView extends View {
     boolean pelota = false;
     String herramienta = "Mover";
     float x,y;
-	String accion;
+	String accion, estiloLinea = "";
 	
     public DrawView(Context context) {
         super(context);         
@@ -57,36 +50,35 @@ public class DrawView extends View {
     @Override
     public void onDraw(Canvas canvas) {
     	Resources res = getResources();
+    	
+    	//COMENTADO EL CAMPO POR RAZONES DE EFICIENCIA A LA HORA DE LAS PRUEBAS
+    	/*
     	Bitmap bitmap = BitmapFactory.decodeResource(res, R.drawable.campo);
     	Bitmap sbitmap = Bitmap.createScaledBitmap(bitmap, canvas.getWidth(),canvas.getHeight(), false);
     	canvas.drawBitmap(sbitmap, 0,0 , paint);
     	bitmap.recycle();
-
-    	//Estilo
-    	paint.setStyle(Paint.Style.STROKE);
-		paint.setStrokeWidth(1);
-		paint.setColor(Color.BLACK);
-		
-		int i;
-
     	sbitmap.recycle();
-    	
+    	*/
+		int i;
+  	
     	for(i = 0; i < jugadores.size(); i++)
     	{
     		jugadores.get(i).dibujar(canvas);
     	}
 
-
-		
-		if(accion == "moverDedo")
+        
+		if(accion == "moverFlecha")
 		{
-			canvas.drawLine(linea.x0, linea.y0, x, y, paint);
+			linea.pintarLineaMovimiento(canvas, x, y);
 		}
+		
+		
 				
 		for(int j=0; j < lineas.size();j++)
 		{
-			lineas.get(j).dibujar(canvas, paint);
+			lineas.get(j).dibujar(canvas);
 		}
+		
     	Bitmap bitmap1 = BitmapFactory.decodeResource(res, R.drawable.ball);
     	Bitmap sbitmap1 = Bitmap.createScaledBitmap(bitmap1, 30,30, false);
     	
@@ -161,9 +153,13 @@ public class DrawView extends View {
     	{
 	    	if(event.getAction() == MotionEvent.ACTION_DOWN)
 			{
-	    		linea = new Linea();
-				linea.x0 = event.getX();
+	    		linea = new Linea(estiloLinea);
+	    		linea.x0 = event.getX();
 				linea.y0 = event.getY();
+
+				//Parche para arreglar error extranyo al pulsar despues de pintar una flecha
+				x = linea.x0;
+				y = linea.y0;
 			}
 			
 			if(event.getAction() == MotionEvent.ACTION_UP)
@@ -175,7 +171,7 @@ public class DrawView extends View {
 			
 			if(event.getAction() == MotionEvent.ACTION_MOVE)
 			{
-				accion = "moverDedo";
+				accion = "moverFlecha";
 				x = event.getX();
 				y = event.getY();
 						
