@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.math.*;
 
 import Modelo.Jugador;
+import Modelo.Linea;
 import android.app.ActionBar.LayoutParams;
 import android.content.Context;
 import android.content.res.Resources;
@@ -12,6 +13,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.Paint.Align;
 import android.view.MotionEvent;
 import android.view.View;
@@ -20,10 +22,14 @@ import android.widget.LinearLayout;
 public class DrawView extends View {
     Paint paint = new Paint();
     ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+	ArrayList<Linea> lineas = new ArrayList<Linea>();
     Jugador a = null;
+	Linea linea = null;
     boolean encontrado = false;
     String herramienta = "Mover";
-
+    float x,y;
+	String accion;
+	
     public DrawView(Context context) {
         super(context);         
         jugadores.add(new Jugador(50, 140, "1", true));
@@ -48,14 +54,27 @@ public class DrawView extends View {
     	Bitmap sbitmap = Bitmap.createScaledBitmap(bitmap, canvas.getWidth(),canvas.getHeight()-200, false);
     	canvas.drawBitmap(sbitmap, 0,0 , paint);
     	bitmap.recycle();
-    	int i;
-    	
+    	//Estilo
+    	paint.setStyle(Paint.Style.STROKE);
+		paint.setStrokeWidth(1);
+		paint.setColor(Color.BLACK);
+		
+		int i;
     	for(i = 0; i < jugadores.size(); i++)
     	{
     		jugadores.get(i).dibujar(canvas);
     	}
-  	
-    	
+
+		
+		if(accion == "moverDedo")
+		{
+			canvas.drawLine(linea.x0, linea.y0, x, y, paint);
+		}
+				
+		for(int j=0; j < lineas.size();j++)
+		{
+			lineas.get(j).dibujar(canvas, paint);
+		}
     }
     
     @Override
@@ -94,8 +113,40 @@ public class DrawView extends View {
 	    		 }
 	    		 break;
 			}
+
     	}
+    	else if(herramienta.equals("Flecha"))
+    	{
+	    	if(event.getAction() == MotionEvent.ACTION_DOWN)
+			{
+	    		linea = new Linea();
+				linea.x0 = event.getX();
+				linea.y0 = event.getY();
+			}
+			
+			if(event.getAction() == MotionEvent.ACTION_UP)
+			{
+				linea.x1 = event.getX();
+				linea.y1 = event.getY();
+				lineas.add(linea);
+			}
+			
+			if(event.getAction() == MotionEvent.ACTION_MOVE)
+			{
+				accion = "moverDedo";
+				x = event.getX();
+				y = event.getY();
+						
+			}
+			invalidate();
+    	}
+    	
+    	
+    	
+    	
     	return true;
     }
+
+
 
 }
