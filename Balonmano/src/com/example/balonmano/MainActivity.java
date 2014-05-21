@@ -1,7 +1,6 @@
 package com.example.balonmano;
 
 import android.app.Activity;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -76,8 +75,9 @@ public class MainActivity extends Activity {
 		
 		@Override
 		public void onClick(View v) {
-			drawView.lineas.clear();
 			
+			//drawView.lineas.clear();
+			drawView.Undo();
 			drawView.invalidate();
 			
 		}

@@ -19,6 +19,14 @@ public class Jugador {
 		this.equipo = equipo;
 	}
 	
+	public Jugador(Jugador jugador)
+	{
+		x = jugador.x;
+		y = jugador.y;
+		numero = jugador.numero;
+		equipo = jugador.equipo;
+	}
+	
 	public void dibujar(Canvas canvas)
 	{
 		Paint paint = new Paint();

@@ -11,6 +11,7 @@ public class Linea {
 	public Path path;
 	public String estilo;
 	public Paint paint= new Paint();
+	
 	public Linea(String estilo)
 	{
 		paint.setStyle(Paint.Style.STROKE);
@@ -19,7 +20,15 @@ public class Linea {
 		if(estilo == "D")
 		paint.setPathEffect(new DashPathEffect(new float[] {5,10}, 0));
 	}
-	
+	public Linea(Linea linea)
+	{
+		x0=linea.x0;
+		y0=linea.y0;
+		x1=linea.x1;
+		y1=linea.y1;
+		estilo = linea.estilo;
+		paint = linea.paint;
+	}
 	public void dibujar(Canvas canvas)
 	{
 		path = new Path();

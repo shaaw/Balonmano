@@ -1,33 +1,33 @@
 package com.example.balonmano;
 
-import java.io.File;
 import java.util.ArrayList;
 
+import Modelo.Almacen;
 import Modelo.Jugador;
 import Modelo.Linea;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.drawable.BitmapDrawable;
-import android.os.Environment;
 import android.view.MotionEvent;
 import android.view.View;
 
 public class DrawView extends View {
     Paint paint = new Paint();
-    ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
-	ArrayList<Linea> lineas = new ArrayList<Linea>();
+    public ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+    public ArrayList<Linea> lineas = new ArrayList<Linea>();
+    public ArrayList<Almacen> listaAlmacen = new ArrayList<Almacen>();
+    
+	int listaCont = 0;
 	Path path = new Path();
     float pelotax;
     float pelotay;
     Jugador a = null;
 	Linea linea = null;
+	Almacen almacen = null;
     boolean encontrado = false;
     boolean pelota = false;
     String herramienta = "Mover";
@@ -82,6 +82,13 @@ public class DrawView extends View {
 			linea.pintarLineaMovimiento(canvas, x, y);
 		}
 		
+		if(accion == "levantar")
+		{
+			almacen = new Almacen(lineas,jugadores);
+			
+			listaAlmacen.add(almacen);
+			listaCont++;
+		}
 		
 				
 		for(int j=0; j < lineas.size();j++)
@@ -174,6 +181,7 @@ public class DrawView extends View {
 			
 			if(event.getAction() == MotionEvent.ACTION_UP)
 			{
+				accion = "levantar";
 				linea.x1 = event.getX();
 				linea.y1 = event.getY();
 				lineas.add(linea);
@@ -193,6 +201,28 @@ public class DrawView extends View {
     	
     	
     	return true;
+    }
+    public void CargarListaAlmacen(int pos)
+    {
+    	if(pos < listaAlmacen.size() && pos >= 0)
+    	{
+    		lineas.clear();
+    		jugadores.clear();
+    	
+    		lineas = listaAlmacen.get(pos).lineas;
+    		jugadores = listaAlmacen.get(pos).jugadores;
+    	}
+    }
+    
+    public void Undo()
+    {
+    	listaCont--;
+    	CargarListaAlmacen(listaCont);
+    }
+    public void Redo()
+    {
+    	listaCont++;
+    	CargarListaAlmacen(listaCont);
     }
 
 	public void CargarJugada(String jugada) {
