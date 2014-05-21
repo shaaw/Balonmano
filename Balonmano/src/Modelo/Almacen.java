@@ -2,6 +2,7 @@ package Modelo;
 
 import java.util.ArrayList;
 
+
 public class Almacen {
 	public ArrayList<Linea> lineas;
 	public ArrayList<Jugador> jugadores;
