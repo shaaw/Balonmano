@@ -297,23 +297,29 @@ public class DrawView extends View {
 			jugadores.get(4).y = 140;
 			
 			
+			
 			jugadores.get(5).x = 300;
 			jugadores.get(5).y = 350;
 			
 		}else 
 		{
-			jugadores.get(0).x = 50;
-			jugadores.get(0).y = 140;
-			jugadores.get(1).x = 110;
-			jugadores.get(1).y = 220;
-			jugadores.get(2).x = 195;
+			jugadores.get(0).x = 110;
+			jugadores.get(0).y = 300;
+			
+			jugadores.get(1).x = 80;
+			jugadores.get(1).y = 200;
+			
+			jugadores.get(2).x = 255;
 			jugadores.get(2).y = 240;
-			jugadores.get(3).x = 280;
-			jugadores.get(3).y = 240;
+			
+			jugadores.get(3).x = 380;
+			jugadores.get(3).y = 200;
+			
 			jugadores.get(4).x = 365;
-			jugadores.get(4).y = 220;
-			jugadores.get(5).x = 425;
-			jugadores.get(5).y = 140;
+			jugadores.get(4).y = 300;
+			
+			jugadores.get(5).x = 240;
+			jugadores.get(5).y = 350;
 		}
 		
 		
