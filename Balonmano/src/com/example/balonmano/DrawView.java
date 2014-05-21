@@ -81,14 +81,7 @@ public class DrawView extends View {
 		{
 			linea.pintarLineaMovimiento(canvas, x, y);
 		}
-		
-		if(accion == "levantar")
-		{
-			almacen = new Almacen(lineas,jugadores);
-			
-			listaAlmacen.add(almacen);
-			listaCont++;
-		}
+
 		
 				
 		for(int j=0; j < lineas.size();j++)
@@ -128,6 +121,13 @@ public class DrawView extends View {
 					{
 						pelota=true;
 					}
+				}
+				if(encontrado)
+				{
+					almacen = new Almacen(lineas,jugadores);
+					
+					listaAlmacen.add(almacen);
+					listaCont++;
 				}
 				break;
 	    	case MotionEvent.ACTION_MOVE:
@@ -170,6 +170,11 @@ public class DrawView extends View {
     	{
 	    	if(event.getAction() == MotionEvent.ACTION_DOWN)
 			{
+	    		almacen = new Almacen(lineas,jugadores);
+				
+				listaAlmacen.add(almacen);
+				listaCont++;
+				
 	    		linea = new Linea(estiloLinea);
 	    		linea.x0 = event.getX();
 				linea.y0 = event.getY();
@@ -181,7 +186,6 @@ public class DrawView extends View {
 			
 			if(event.getAction() == MotionEvent.ACTION_UP)
 			{
-				accion = "levantar";
 				linea.x1 = event.getX();
 				linea.y1 = event.getY();
 				lineas.add(linea);
