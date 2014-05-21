@@ -21,13 +21,12 @@ public class MainActivity extends Activity {
         layout.addView(drawView);
         drawView.setBackgroundResource(R.drawable.campo);
         final Button mover = (Button)findViewById(R.id.saveButton);
-        final Button flecha = (Button)findViewById(R.id.cancelButton);
         final Button lContinua = (Button)findViewById(R.id.L_Cont);
         final Button lDiscontinua = (Button)findViewById(R.id.L_Disc);
-        final Button Borrar = (Button)findViewById(R.id.B_Del);
+        final Button Undo = (Button)findViewById(R.id.B_Undo);
+        final Button Redo = (Button)findViewById(R.id.B_Redo);
         
         mover.setEnabled(false);
-        lContinua.setEnabled(false);
         lDiscontinua.setEnabled(false);
         
         mover.setOnClickListener(new View.OnClickListener() {
@@ -36,26 +35,18 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				drawView.herramienta="Mover";
 				mover.setEnabled(false);
-				flecha.setEnabled(true);
+				lContinua.setEnabled(true);
 			}
 		});
         
-        flecha.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				drawView.herramienta = "Flecha";
-				flecha.setEnabled(false);
-				mover.setEnabled(true);
-				lDiscontinua.setEnabled(true);
-			}
-		});
         
         lContinua.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
+				drawView.herramienta = "Flecha";
 				drawView.estiloLinea = "C";
+				mover.setEnabled(true);
 		        lDiscontinua.setEnabled(true);
 		        lContinua.setEnabled(false);			
 			}
@@ -65,13 +56,15 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
+				drawView.herramienta = "Flecha";
 				drawView.estiloLinea = "D";
+				mover.setEnabled(true);
 		        lDiscontinua.setEnabled(false);
 		        lContinua.setEnabled(true);
 			}
 		});
         
-        Borrar.setOnClickListener(new View.OnClickListener() {
+        Undo.setOnClickListener(new View.OnClickListener() {
 		
 		@Override
 		public void onClick(View v) {
@@ -83,6 +76,17 @@ public class MainActivity extends Activity {
 		}
         });
         
+        Redo.setOnClickListener(new View.OnClickListener() {
+    		
+		@Override
+		public void onClick(View v) {
+			
+			//drawView.lineas.clear();
+			drawView.Redo();
+			drawView.invalidate();
+			
+		}
+        });
         
     }
     

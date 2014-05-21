@@ -170,6 +170,8 @@ public class DrawView extends View {
     	{
 	    	if(event.getAction() == MotionEvent.ACTION_DOWN)
 			{
+	    		BorrarListaAlmacen();
+	    		
 	    		almacen = new Almacen(lineas,jugadores);
 				
 				listaAlmacen.add(almacen);
@@ -189,6 +191,7 @@ public class DrawView extends View {
 				linea.x1 = event.getX();
 				linea.y1 = event.getY();
 				lineas.add(linea);
+				
 			}
 			
 			if(event.getAction() == MotionEvent.ACTION_MOVE)
@@ -206,13 +209,24 @@ public class DrawView extends View {
     	
     	return true;
     }
+    public void BorrarListaAlmacen()
+    {
+    	if(listaCont < listaAlmacen.size())
+    	{
+    		for(int i = listaCont; i < listaAlmacen.size();i++)
+    		{
+    			if(listaCont != listaAlmacen.size())
+    			{
+    				listaAlmacen.remove(listaCont);
+    			}
+    		}
+    	}
+    }
+    
     public void CargarListaAlmacen(int pos)
     {
     	if(pos < listaAlmacen.size() && pos >= 0)
     	{
-    		lineas.clear();
-    		jugadores.clear();
-    	
     		lineas = listaAlmacen.get(pos).lineas;
     		jugadores = listaAlmacen.get(pos).jugadores;
     	}
@@ -222,6 +236,8 @@ public class DrawView extends View {
     {
     	listaCont--;
     	CargarListaAlmacen(listaCont);
+    	if(listaCont < 0)
+    		listaCont = 0;
     }
     public void Redo()
     {
