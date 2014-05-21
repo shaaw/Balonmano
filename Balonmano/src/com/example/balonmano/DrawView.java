@@ -1,6 +1,8 @@
 package com.example.balonmano;
 
+import java.io.File;
 import java.util.ArrayList;
+
 import Modelo.Jugador;
 import Modelo.Linea;
 import android.content.Context;
@@ -10,6 +12,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Environment;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -28,8 +32,11 @@ public class DrawView extends View {
     float x,y;
 	String accion, estiloLinea = "";
 	
-    public DrawView(Context context) {
-        super(context);         
+	 
+    @SuppressWarnings("deprecation")
+	public DrawView(Context context) {
+        super(context);      
+        
         jugadores.add(new Jugador(50, 140, "1", true));
         jugadores.add(new Jugador(110, 220, "2", true));
         jugadores.add(new Jugador(195, 240, "3", true));
@@ -37,6 +44,7 @@ public class DrawView extends View {
         jugadores.add(new Jugador(365, 220, "5", true));
         jugadores.add(new Jugador(425, 140, "6", true));
         jugadores.add(new Jugador(235, 40, "7", true));
+        
         jugadores.add(new Jugador(30, 60, "1", false));
         jugadores.add(new Jugador(237, 240, "2", false));
         jugadores.add(new Jugador(440, 60, "3", false));
@@ -52,8 +60,8 @@ public class DrawView extends View {
     	Resources res = getResources();
     	
     	//COMENTADO EL CAMPO POR RAZONES DE EFICIENCIA A LA HORA DE LAS PRUEBAS
-    	/*
-    	Bitmap bitmap = BitmapFactory.decodeResource(res, R.drawable.campo);
+    	
+    	/*Bitmap bitmap = BitmapFactory.decodeResource(res, R.drawable.campo);
     	Bitmap sbitmap = Bitmap.createScaledBitmap(bitmap, canvas.getWidth(),canvas.getHeight(), false);
     	canvas.drawBitmap(sbitmap, 0,0 , paint);
     	bitmap.recycle();
@@ -123,8 +131,8 @@ public class DrawView extends View {
 		   		 {
 		   			 if(pelota)
 		   			 {
-		   				 pelotax = event.getX();
-		   				 pelotay = event.getY();
+		   				 pelotax = event.getX() - 15;
+		   				 pelotay = event.getY() - 15;
 		   				invalidate();
 		   			 }
 		   		 }
@@ -139,8 +147,8 @@ public class DrawView extends View {
 		   		 {
 		   			 if(pelota)
 		   			 {
-		   				 pelotax = event.getX();
-		   				 pelotay = event.getY();
+		   				 pelotax = event.getX() - 15;
+		   				 pelotay = event.getY() - 15;
 		   				invalidate();
 		   			 }
 		   		 }
