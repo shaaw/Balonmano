@@ -17,7 +17,7 @@ public class MainActivity extends Activity {
         drawView = new DrawView(this);
         LinearLayout layout= (LinearLayout)findViewById(R.id.canvasLayout);
         layout.addView(drawView);
-        drawView.setBackgroundColor(Color.WHITE);
+        drawView.setBackgroundResource(R.drawable.campo);
         final Button mover = (Button)findViewById(R.id.saveButton);
         final Button flecha = (Button)findViewById(R.id.cancelButton);
         final Button lContinua = (Button)findViewById(R.id.L_Cont);
