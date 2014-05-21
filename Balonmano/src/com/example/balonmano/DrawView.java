@@ -5,7 +5,9 @@ import java.util.ArrayList;
 
 import Modelo.Jugador;
 import Modelo.Linea;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -192,6 +194,11 @@ public class DrawView extends View {
     	
     	return true;
     }
+
+	public void CargarJugada(String jugada) {
+		//Aqu’ hay que colocar a los jugadores segœn jugada, que
+		//nos llega por su nombre en el string jugada. 6-0,5-1...
+	}
 
 
 
