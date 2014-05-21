@@ -228,8 +228,10 @@ public class DrawView extends View {
     	if(pos < listaAlmacen.size() && pos >= 0)
     	{
     		lineas = listaAlmacen.get(pos).lineas;
-    		jugadores = listaAlmacen.get(pos).jugadores;
+    		jugadores = new ArrayList<Jugador>(listaAlmacen.get(pos).jugadores);
     	}
+    	
+    	;
     }
     
     public void Undo()
@@ -238,6 +240,8 @@ public class DrawView extends View {
     	CargarListaAlmacen(listaCont);
     	if(listaCont < 0)
     		listaCont = 0;
+    	
+    	this.invalidate();
     }
     public void Redo()
     {

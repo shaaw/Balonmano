@@ -9,8 +9,14 @@ public class Almacen {
 	
 	public Almacen(ArrayList<Linea> lineas,ArrayList<Jugador> jugadores)
 	{
-		this.lineas = new ArrayList<Linea>(lineas);
-		this.jugadores = new ArrayList<Jugador>(jugadores);
+		int i = 0;
+		
+		this.lineas = new ArrayList<Linea>();
+		for(i = 0; i < lineas.size(); i++)
+			this.lineas.add(new Linea(lineas.get(i)));
+		this.jugadores = new ArrayList<Jugador>();
+		for(i = 0; i < jugadores.size(); i++)
+			this.jugadores.add(new Jugador(jugadores.get(i)));
 	}
 
 	
