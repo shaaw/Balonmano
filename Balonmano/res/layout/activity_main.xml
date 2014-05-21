@@ -26,14 +26,6 @@
                 android:text="Mover" />
 
             <Button
-                android:id="@+id/cancelButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/saveButton"
-                android:text="Flecha" />
-
-            <Button
                 android:id="@+id/L_Cont"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
@@ -54,15 +46,22 @@
                 android:text="L.Disc" />
 
             <Button
-                android:id="@+id/B_Del"
+                android:id="@+id/B_Undo"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_toLeftOf="@+id/L_Disc"
-                android:layout_toRightOf="@+id/cancelButton"
-                android:text="DEL"
-                android:textSize="9sp" />
+                android:text="Undo" />
+
+            <Button
+                android:id="@+id/B_Redo"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/B_Undo"
+                android:layout_toLeftOf="@+id/B_Undo"
+                android:text="Redo" />
 
         </RelativeLayout >
 
