@@ -229,9 +229,75 @@ public class DrawView extends View {
     	CargarListaAlmacen(listaCont);
     }
 
-	public void CargarJugada(String jugada) {
-		//Aqu’ hay que colocar a los jugadores segœn jugada, que
-		//nos llega por su nombre en el string jugada. 6-0,5-1...
+	public void CargarJugada(String jugada) {		
+		if(jugada.equals("6-0"))
+		{		        
+			jugadores.get(0).x = 50;
+			jugadores.get(0).y = 140;
+			jugadores.get(1).x = 110;
+			jugadores.get(1).y = 220;
+			jugadores.get(2).x = 195;
+			jugadores.get(2).y = 240;
+			jugadores.get(3).x = 280;
+			jugadores.get(3).y = 240;
+			jugadores.get(4).x = 365;
+			jugadores.get(4).y = 220;
+			jugadores.get(5).x = 425;
+			jugadores.get(5).y = 140;
+					
+			
+		}else if(jugada.equals("5-1"))
+		{
+			jugadores.get(0).x = 50;
+			jugadores.get(0).y = 140;
+			jugadores.get(1).x = 110;
+			jugadores.get(1).y = 220;
+			jugadores.get(2).x = 255;
+			jugadores.get(2).y = 240;
+			jugadores.get(3).x = 365;
+			jugadores.get(3).y = 220;
+			jugadores.get(4).x = 425;
+			jugadores.get(4).y = 140;
+			jugadores.get(5).x = 240;
+			jugadores.get(5).y = 350;
+			
+		}else if(jugada.equals("4-2"))
+		{
+			jugadores.get(0).x = 160;
+			jugadores.get(0).y = 350;
+			
+			
+			jugadores.get(1).x = 50;
+			jugadores.get(1).y = 140;
+			jugadores.get(2).x = 110;
+			jugadores.get(2).y = 220;
+			jugadores.get(3).x = 365;
+			jugadores.get(3).y = 220;
+			jugadores.get(4).x = 425;
+			jugadores.get(4).y = 140;
+			
+			
+			jugadores.get(5).x = 300;
+			jugadores.get(5).y = 350;
+			
+		}else 
+		{
+			jugadores.get(0).x = 50;
+			jugadores.get(0).y = 140;
+			jugadores.get(1).x = 110;
+			jugadores.get(1).y = 220;
+			jugadores.get(2).x = 195;
+			jugadores.get(2).y = 240;
+			jugadores.get(3).x = 280;
+			jugadores.get(3).y = 240;
+			jugadores.get(4).x = 365;
+			jugadores.get(4).y = 220;
+			jugadores.get(5).x = 425;
+			jugadores.get(5).y = 140;
+		}
+		
+		
+		this.invalidate();
 	}
 
 

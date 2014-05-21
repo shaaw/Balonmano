@@ -100,7 +100,7 @@ public class MainActivity extends Activity {
 	}
     
 	@Override
-	public boolean onContextItemSelected(MenuItem item) {
+	public boolean onOptionsItemSelected(MenuItem item) {
 	 //seleccion de cada opcion de los menus.
 	    switch (item.getItemId()) {
 	        case 0:
