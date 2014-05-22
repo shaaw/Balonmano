@@ -20,7 +20,6 @@ public class DrawView extends View {
     public ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
     public ArrayList<Linea> lineas = new ArrayList<Linea>();
     public ArrayList<Almacen> listaAlmacen = new ArrayList<Almacen>();
-    
 	int listaCont = 0;
 	Path path = new Path();
     float pelotax;
@@ -55,7 +54,6 @@ public class DrawView extends View {
         jugadores.add(new Jugador(425, 350, "6", false));
         pelotax = 250;
         pelotay = 250;
-        
         almacen = new Almacen(lineas,jugadores, pelotax, pelotay);
 		
 		listaAlmacen.add(almacen);
@@ -220,10 +218,10 @@ public class DrawView extends View {
     {
     	if(pos < listaAlmacen.size() && pos >= 0)
     	{
-    		lineas = listaAlmacen.get(pos).lineas;
+    		lineas = new ArrayList<Linea>(listaAlmacen.get(pos).lineas);
     		jugadores = new ArrayList<Jugador>(listaAlmacen.get(pos).jugadores);
     		pelotax = listaAlmacen.get(pos).pelotax;
-    		pelotay = listaAlmacen.get(pos).pelotay;
+    		pelotay = listaAlmacen.get(pos).pelotay;	
     	}
     	
     }
@@ -249,11 +247,11 @@ public class DrawView extends View {
     	//CargarListaAlmacen(0);
     	//listaAlmacen.clear();
     	//listaAlmacen.add(aux);
-    	
-    	almacen = new Almacen(listaAlmacen.get(0).lineas, listaAlmacen.get(0).jugadores,listaAlmacen.get(0).pelotax, listaAlmacen.get(0).pelotay);
+    	lineas.clear();
+    	almacen = new Almacen(lineas, jugadores,pelotax, pelotay);
     	listaAlmacen.add(almacen);
     	listaCont++;
-    	CargarListaAlmacen(0);
+    	AnyadirAAlmacen();
     	invalidate();
     }
 

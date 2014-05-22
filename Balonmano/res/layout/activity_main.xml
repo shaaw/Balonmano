@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
-                android:text="Inicial"
+                android:text="Limpiar"
                 android:textSize="18sp" />
 
             <Button
