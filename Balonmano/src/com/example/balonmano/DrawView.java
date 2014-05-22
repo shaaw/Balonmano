@@ -330,7 +330,7 @@ public class DrawView extends View {
 			jugadores.get(5).y = 350;
 		}
 		
-
+		lineas.clear();
 		AnyadirAAlmacen();
 		
 		this.invalidate();
