@@ -55,20 +55,17 @@ public class DrawView extends View {
         jugadores.add(new Jugador(425, 350, "6", false));
         pelotax = 250;
         pelotay = 250;
+        
+        almacen = new Almacen(lineas,jugadores, pelotax, pelotay);
+		
+		listaAlmacen.add(almacen);
+		
     }
 
     @Override
     public void onDraw(Canvas canvas) {
     	Resources res = getResources();
-    	
-    	//COMENTADO EL CAMPO POR RAZONES DE EFICIENCIA A LA HORA DE LAS PRUEBAS
-    	
-    	/*Bitmap bitmap = BitmapFactory.decodeResource(res, R.drawable.campo);
-    	Bitmap sbitmap = Bitmap.createScaledBitmap(bitmap, canvas.getWidth(),canvas.getHeight(), false);
-    	canvas.drawBitmap(sbitmap, 0,0 , paint);
-    	bitmap.recycle();
-    	sbitmap.recycle();
-    	*/
+
 		int i;
   	
     	for(i = 0; i < jugadores.size(); i++)
@@ -122,13 +119,7 @@ public class DrawView extends View {
 						pelota=true;
 					}
 				}
-				if(encontrado)
-				{
-					almacen = new Almacen(lineas,jugadores);
-					
-					listaAlmacen.add(almacen);
-					listaCont++;
-				}
+
 				break;
 	    	case MotionEvent.ACTION_MOVE:
 		   		 if(encontrado)
@@ -151,13 +142,15 @@ public class DrawView extends View {
 	    		 {
 	    			a.x = event.getX();
 	    		 	a.y = event.getY();
+					AnyadirAAlmacen();
 	    		 	invalidate();
 	    		 }else
 		   		 {
 		   			 if(pelota)
 		   			 {
-		   				 pelotax = event.getX() - 15;
-		   				 pelotay = event.getY() - 15;
+		   				pelotax = event.getX() - 15;
+		   				pelotay = event.getY() - 15;
+		   				AnyadirAAlmacen();
 		   				invalidate();
 		   			 }
 		   		 }
@@ -169,18 +162,10 @@ public class DrawView extends View {
     	else if(herramienta.equals("Flecha"))
     	{
 	    	if(event.getAction() == MotionEvent.ACTION_DOWN)
-			{
-	    		BorrarListaAlmacen();
-	    		
-	    		almacen = new Almacen(lineas,jugadores);
-				
-				listaAlmacen.add(almacen);
-				listaCont++;
-				
+			{	    		
 	    		linea = new Linea(estiloLinea);
 	    		linea.x0 = event.getX();
 				linea.y0 = event.getY();
-
 				//Parche para arreglar error extranyo al pulsar despues de pintar una flecha
 				x = linea.x0;
 				y = linea.y0;
@@ -191,6 +176,7 @@ public class DrawView extends View {
 				linea.x1 = event.getX();
 				linea.y1 = event.getY();
 				lineas.add(linea);
+				AnyadirAAlmacen();
 				
 			}
 			
@@ -209,6 +195,13 @@ public class DrawView extends View {
     	
     	return true;
     }
+    public void AnyadirAAlmacen()
+    {
+	 	almacen = new Almacen(lineas,jugadores, pelotax, pelotay);
+		listaAlmacen.add(almacen);
+		listaCont++;
+    }
+    
     public void BorrarListaAlmacen()
     {
     	if(listaCont < listaAlmacen.size())
@@ -229,9 +222,10 @@ public class DrawView extends View {
     	{
     		lineas = listaAlmacen.get(pos).lineas;
     		jugadores = new ArrayList<Jugador>(listaAlmacen.get(pos).jugadores);
+    		pelotax = listaAlmacen.get(pos).pelotax;
+    		pelotay = listaAlmacen.get(pos).pelotay;
     	}
     	
-    	;
     }
     
     public void Undo()
@@ -240,13 +234,27 @@ public class DrawView extends View {
     	CargarListaAlmacen(listaCont);
     	if(listaCont < 0)
     		listaCont = 0;
-    	
-    	this.invalidate();
+    	invalidate();    	
     }
     public void Redo()
     {
     	listaCont++;
     	CargarListaAlmacen(listaCont);
+    	if(listaCont == listaAlmacen.size())
+    		listaCont--;
+    	invalidate();    	
+    }
+    public void Reset()
+    {
+    	//CargarListaAlmacen(0);
+    	//listaAlmacen.clear();
+    	//listaAlmacen.add(aux);
+    	
+    	almacen = new Almacen(listaAlmacen.get(0).lineas, listaAlmacen.get(0).jugadores,listaAlmacen.get(0).pelotax, listaAlmacen.get(0).pelotay);
+    	listaAlmacen.add(almacen);
+    	listaCont++;
+    	CargarListaAlmacen(0);
+    	invalidate();
     }
 
 	public void CargarJugada(String jugada) {		
@@ -316,6 +324,8 @@ public class DrawView extends View {
 			jugadores.get(5).y = 140;
 		}
 		
+
+		AnyadirAAlmacen();
 		
 		this.invalidate();
 	}

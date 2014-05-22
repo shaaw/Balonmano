@@ -23,19 +23,13 @@ public class MainActivity extends Activity {
         final Button mover = (Button)findViewById(R.id.saveButton);
         final Button lContinua = (Button)findViewById(R.id.L_Cont);
         final Button lDiscontinua = (Button)findViewById(R.id.L_Disc);
-        final Button Undo = (Button)findViewById(R.id.B_Undo);
-        final Button Redo = (Button)findViewById(R.id.B_Redo);
-        
-        mover.setEnabled(false);
-        lDiscontinua.setEnabled(false);
-        
+        final Button Reset = (Button)findViewById(R.id.B_Reset);
+                
         mover.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				drawView.herramienta="Mover";
-				mover.setEnabled(false);
-				lContinua.setEnabled(true);
 			}
 		});
         
@@ -45,10 +39,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				drawView.herramienta = "Flecha";
-				drawView.estiloLinea = "C";
-				mover.setEnabled(true);
-		        lDiscontinua.setEnabled(true);
-		        lContinua.setEnabled(false);			
+				drawView.estiloLinea = "C";		
 			}
 		});
         
@@ -58,33 +49,16 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				drawView.herramienta = "Flecha";
 				drawView.estiloLinea = "D";
-				mover.setEnabled(true);
-		        lDiscontinua.setEnabled(false);
-		        lContinua.setEnabled(true);
 			}
 		});
+
         
-        Undo.setOnClickListener(new View.OnClickListener() {
-		
-		@Override
-		public void onClick(View v) {
-			
-			//drawView.lineas.clear();
-			drawView.Undo();
-			drawView.invalidate();
-			
-		}
-        });
-        
-        Redo.setOnClickListener(new View.OnClickListener() {
+        Reset.setOnClickListener(new View.OnClickListener() {
     		
 		@Override
 		public void onClick(View v) {
 			
-			//drawView.lineas.clear();
-			drawView.Redo();
-			drawView.invalidate();
-			
+			drawView.Reset();			
 		}
         });
         
@@ -119,6 +93,12 @@ public class MainActivity extends Activity {
 	        case 3:
 	        	drawView.CargarJugada(item.getTitle().toString());
 	            return true;
+	        case R.id.Undo:
+				drawView.Undo();
+	        	return true;
+	        case R.id.Redo:
+				drawView.Redo();
+	        	return true;
 	       default:
 	    	   return true; 
 	    }

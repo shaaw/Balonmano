@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.balonmano.MainActivity"
     tools:ignore="MergeRootFrame" >
+    
 	 <LinearLayout
         android:id="@+id/canvasLayout"
         android:layout_width="match_parent"
@@ -21,51 +22,50 @@
         android:layout_gravity="bottom"
         android:orientation="horizontal" >
 
-            <Button android:id="@+id/saveButton" android:layout_width="wrap_content"
-            android:layout_height="wrap_content" 
-                android:text="Mover" />
+            <Button
+                android:id="@+id/L_Disc"
+                style="@drawable/fdisc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/B_Reset"
+                android:layout_alignBottom="@+id/B_Reset"
+                android:layout_marginRight="14dp"
+                android:layout_toLeftOf="@+id/L_Cont"
+                android:background="@drawable/fdisc"
+                android:focusableInTouchMode="false"
+                android:minHeight="30dp" />
 
             <Button
                 android:id="@+id/L_Cont"
-                style="?android:attr/buttonStyleSmall"
+                style="@drawable/fcont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
+                android:layout_alignBaseline="@+id/L_Disc"
+                android:layout_alignBottom="@+id/L_Disc"
                 android:layout_alignParentRight="true"
-                android:minHeight="30dp"
-                android:text="L.Cont" />
+                android:background="@drawable/fcont"
+                android:focusableInTouchMode="false"
+                android:minHeight="30dp" />
 
             <Button
-                android:id="@+id/L_Disc"
+                android:id="@+id/B_Reset"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_toLeftOf="@+id/L_Cont"
-                android:minHeight="30dp"
-                android:text="L.Disc" />
+                android:layout_alignParentLeft="true"
+                android:text="Inicial"
+                android:textSize="18sp" />
 
             <Button
-                android:id="@+id/B_Undo"
-                style="?android:attr/buttonStyleSmall"
+                android:id="@+id/saveButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_toLeftOf="@+id/L_Disc"
-                android:text="Undo" />
-
-            <Button
-                android:id="@+id/B_Redo"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/B_Undo"
-                android:layout_toLeftOf="@+id/B_Undo"
-                android:text="Redo" />
+                android:layout_toRightOf="@+id/B_Reset"
+                android:text="Mover" />
 
         </RelativeLayout >
-
-   
 
 </FrameLayout>
 

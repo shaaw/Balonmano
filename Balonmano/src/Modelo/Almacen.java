@@ -6,8 +6,9 @@ import java.util.ArrayList;
 public class Almacen {
 	public ArrayList<Linea> lineas;
 	public ArrayList<Jugador> jugadores;
+	public float pelotax, pelotay;
 	
-	public Almacen(ArrayList<Linea> lineas,ArrayList<Jugador> jugadores)
+	public Almacen(ArrayList<Linea> lineas,ArrayList<Jugador> jugadores, float pelotax, float pelotay)
 	{
 		int i = 0;
 		
@@ -17,6 +18,8 @@ public class Almacen {
 		this.jugadores = new ArrayList<Jugador>();
 		for(i = 0; i < jugadores.size(); i++)
 			this.jugadores.add(new Jugador(jugadores.get(i)));
+		this.pelotax = pelotax;
+		this.pelotay = pelotay;
 	}
 
 	
